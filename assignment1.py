@@ -17,6 +17,7 @@ class mapreduce:
 
 	def doubleWordCount(self):
 		
+		# Create list of double words
 		def doubleWords(line):
 			line = line.split()
 			doubleWords = ()
@@ -30,6 +31,7 @@ class mapreduce:
 	def findFreq(self, filepath, filename):
 		self.sc.addFile(filepath)
 
+		# Check if the word is in the target list
 		def isTarget(word):
 			targetList = []
 			with open(SparkFiles.get(filepath.split('/')[-1])) as publicF:
