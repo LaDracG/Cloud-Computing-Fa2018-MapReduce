@@ -43,7 +43,8 @@ class mapreduce:
 		return self.find_freq_counts
 
 #basePath = '/Users/jyguo/Desktop/Courses/Cloud_Computing/'
-basePath = 's3://aws-logs-815402967860-us-east-2/elasticmapreduce/JY-CC/Assignment1/'
+#basePath = 's3://aws-logs-815402967860-us-east-2/elasticmapreduce/JY-CC/Assignment1/'
+basePath = './'
 biblePath = basePath + 'bibles/'
 findFileName = 'word-patterns.txt'
 findPath = basePath + findFileName
