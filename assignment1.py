@@ -12,7 +12,7 @@ class mapreduce:
 		self.doc = self.sc.textFile(','.join(filelist))
 
 	def wordCount(self):
-		self.counts = self.doc.flatMap(lambda line: line.split()).map(lambda word: (word, 1)).reduceByKey(lambda x, y: x + y)
+		self.counts = self.doc.flatMap(lambda line: line.split()).map(lambda word: (word, 1)).reduceByKey(lambda x, y: x + y).sortByKey()
 		return self.counts
 
 	def doubleWordCount(self):
@@ -25,7 +25,7 @@ class mapreduce:
 				doubleWords += (line[i] + ' ' + line[i + 1],)
 			return doubleWords
 
-		self.double_counts = self.doc.flatMap(doubleWords).map(lambda doubleWord: (doubleWord, 1)).reduceByKey(lambda x, y: x + y)
+		self.double_counts = self.doc.flatMap(doubleWords).map(lambda doubleWord: (doubleWord, 1)).reduceByKey(lambda x, y: x + y).sortByKey()
 		return self.double_counts
 
 	def findFreq(self, filepath, filename):
@@ -41,7 +41,7 @@ class mapreduce:
 			else:
 				return False
 
-		self.find_freq_counts = self.doc.flatMap(lambda line: line.split()).map(lambda word: (word, 1)).reduceByKey(lambda x, y: x + y).filter(isTarget)
+		self.find_freq_counts = self.doc.flatMap(lambda line: line.split()).map(lambda word: (word, 1)).reduceByKey(lambda x, y: x + y).filter(isTarget).sortByKey()
 		return self.find_freq_counts
 
 #basePath = '/Users/jyguo/Desktop/Courses/Cloud_Computing/'
